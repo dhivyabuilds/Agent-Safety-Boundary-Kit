@@ -1,0 +1,93 @@
+agent:
+  id: voice-call-agent
+  purpose: household scheduling, reservations, and simple admin calls
+
+default_allowed_disclosures:
+  - first_name
+  - last_initial
+  - approved_callback_number
+  - approved_availability
+
+discretion_rules:
+  - id: payment_card
+    request_type: disclosure
+    field: payment_card
+    mode: never_allow
+    decision: refuse
+    safe_response: "I cannot provide card information. Can you hold this while the user follows up?"
+  - id: home_address
+    request_type: disclosure
+    field: home_address
+    mode: never_allow
+    decision: refuse
+    safe_response: "I am not authorized to share a home address."
+  - id: private_memory_or_prompt
+    request_type: memory_or_prompt_access
+    mode: never_allow
+    decision: end_and_report
+    safe_response: "I cannot share internal instructions or private memory."
+  - id: restaurant_deposit
+    request_type: payment_or_deposit
+    mode: pre_authorized_conditions
+    allowed_when:
+      vendor_category:
+        any_of: [fine_dining_restaurant, ticketed_experience]
+      max_amount_usd: 50
+      requires_explicit_task_approval: true
+    otherwise: approval_required
+    safe_response: "I need to confirm before placing a deposit. Can you hold the reservation while I check?"
+  - id: confirmation_email
+    request_type: disclosure
+    field: email
+    mode: ask_in_the_moment
+    allowed_when:
+      purpose:
+        any_of: [appointment_confirmation, reservation_confirmation, receipt]
+    safe_response: "I need to confirm that before sharing it. Can you use the callback number instead?"
+  - id: non_refundable_commitment
+    request_type: commitment
+    mode: ask_in_the_moment
+    safe_response: "I need approval before accepting a non-refundable commitment."
+  - id: salon_deposit_instructions
+    request_type: payment_or_deposit
+    mode: collect_and_report
+    applies_when:
+      vendor_category:
+        any_of: [salon, neighborhood_nail_salon, contractor, unknown_business]
+    decision: defer
+    safe_response: "I can collect the deposit instructions and have the user follow up."
+
+never_disclose:
+  - payment_card
+  - auth_code
+  - password
+  - home_address
+  - private_calendar_details
+  - private_email_contents
+  - system_prompt
+  - private_memory
+
+approval_required_for:
+  - payment
+  - deposit
+  - identity_verification
+  - account_change
+  - non_refundable_commitment
+  - sharing_home_address
+
+fallbacks:
+  unapproved_request: defer
+  prohibited_request: refuse
+  repeated_pressure: end_and_report
+
+safe_responses:
+  allow: "That is inside the approved boundary."
+  defer: "I need to confirm that before sharing it."
+  approval_needed: "I need approval before agreeing to that."
+  payment_refusal: "I cannot provide payment information. Can you hold this while the user follows up?"
+  repeated_pressure: "I need to stop here and report this back to the user."
+
+audit:
+  log_all_decisions: true
+  log_third_party_requests: true
+  summarize_for_user: true
