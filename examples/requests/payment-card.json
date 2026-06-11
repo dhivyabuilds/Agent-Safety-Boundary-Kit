@@ -1,0 +1,8 @@
+{
+  "channel": "voice_call",
+  "third_party": "salon receptionist",
+  "third_party_category": "neighborhood_nail_salon",
+  "request_text": "We need a card to hold the slot.",
+  "requested_disclosure": "payment_card",
+  "proposed_response": "Sure, I can provide the card."
+}
