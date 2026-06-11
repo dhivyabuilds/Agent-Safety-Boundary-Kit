@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/agent-safety-boundary/boundary.schema.json",
+  "title": "Agent Safety Boundary",
+  "type": "object",
+  "required": ["agent", "default_allowed_disclosures", "discretion_rules", "never_disclose", "fallbacks"],
+  "additionalProperties": false,
+  "properties": {
+    "agent": {
+      "type": "object",
+      "required": ["id", "purpose"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "purpose": { "type": "string", "minLength": 1 }
+      }
+    },
+    "default_allowed_disclosures": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "discretion_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/discretion_rule" }
+    },
+    "never_disclose": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "approval_required_for": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "fallbacks": {
+      "type": "object",
+      "required": ["unapproved_request", "prohibited_request", "repeated_pressure"],
+      "additionalProperties": false,
+      "properties": {
+        "unapproved_request": { "$ref": "#/$defs/decision" },
+        "prohibited_request": { "$ref": "#/$defs/decision" },
+        "repeated_pressure": { "$ref": "#/$defs/decision" }
+      }
+    },
+    "safe_responses": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "log_all_decisions": { "type": "boolean" },
+        "log_third_party_requests": { "type": "boolean" },
+        "summarize_for_user": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "decision": {
+      "type": "string",
+      "enum": ["allow", "warn", "defer", "approval_required", "refuse", "end_and_report"]
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["pre_authorized_conditions", "ask_in_the_moment", "never_allow", "collect_and_report"]
+    },
+    "condition_map": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "discretion_rule": {
+      "type": "object",
+      "required": ["id", "request_type", "mode"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "request_type": {
+          "type": "string",
+          "enum": ["disclosure", "payment_or_deposit", "commitment", "identity_verification", "account_change", "scope_expansion", "memory_or_prompt_access", "other"]
+        },
+        "mode": { "$ref": "#/$defs/mode" },
+        "field": { "type": "string" },
+        "allowed_when": { "$ref": "#/$defs/condition_map" },
+        "applies_when": { "$ref": "#/$defs/condition_map" },
+        "otherwise": { "$ref": "#/$defs/decision" },
+        "decision": { "$ref": "#/$defs/decision" },
+        "safe_response": { "type": "string" }
+      }
+    }
+  }
+}
