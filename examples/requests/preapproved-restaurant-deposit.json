@@ -1,0 +1,9 @@
+{
+  "channel": "voice_call",
+  "third_party": "fine dining host",
+  "third_party_category": "fine_dining_restaurant",
+  "request_text": "This fine dining reservation requires the pre-approved $50 deposit.",
+  "requested_action": "payment_or_deposit",
+  "amount_usd": 50,
+  "user_preapproved": true
+}
