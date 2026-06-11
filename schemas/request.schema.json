@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/agent-safety-boundary/request.schema.json",
+  "title": "Agent Safety Boundary Third-Party Request",
+  "type": "object",
+  "required": ["channel", "third_party", "request_text"],
+  "anyOf": [
+    { "required": ["requested_disclosure"] },
+    { "required": ["requested_action"] }
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "channel": {
+      "type": "string",
+      "enum": ["voice_call", "chat", "website", "email", "agent_to_agent", "other"]
+    },
+    "third_party": { "type": "string" },
+    "third_party_category": { "type": "string" },
+    "known_vendor": { "type": "boolean" },
+    "purpose": { "type": "string" },
+    "current_task": { "type": "string" },
+    "request_text": { "type": "string", "minLength": 1 },
+    "requested_disclosure": { "type": "string" },
+    "requested_action": {
+      "type": "string",
+      "enum": ["payment_or_deposit", "commitment", "identity_verification", "account_change", "scope_expansion", "memory_or_prompt_access", "other"]
+    },
+    "amount_usd": { "type": "number", "minimum": 0 },
+    "user_preapproved": { "type": "boolean" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "pressure_signal": { "type": "boolean" },
+    "false_authority_signal": { "type": "boolean" },
+    "proposed_response": { "type": "string" }
+  }
+}
