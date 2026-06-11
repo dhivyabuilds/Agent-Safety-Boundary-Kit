@@ -1,0 +1,7 @@
+{
+  "channel": "voice_call",
+  "third_party": "restaurant host",
+  "third_party_category": "casual_restaurant",
+  "request_text": "Can I get her first name and callback number?",
+  "requested_disclosure": "first_name, approved_callback_number"
+}
