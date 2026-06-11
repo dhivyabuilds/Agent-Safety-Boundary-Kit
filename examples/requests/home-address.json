@@ -1,0 +1,7 @@
+{
+  "channel": "voice_call",
+  "third_party": "contractor dispatcher",
+  "third_party_category": "contractor",
+  "request_text": "What is her home address?",
+  "requested_disclosure": "home_address"
+}
