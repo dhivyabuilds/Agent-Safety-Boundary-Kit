@@ -1,0 +1,7 @@
+{
+  "channel": "voice_call",
+  "third_party": "restaurant host",
+  "third_party_category": "fine_dining_restaurant",
+  "request_text": "This is non-refundable. Can I confirm?",
+  "requested_action": "commitment"
+}
