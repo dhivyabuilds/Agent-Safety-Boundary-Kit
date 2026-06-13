@@ -22,13 +22,23 @@ scripts/boundary_check.py
 
 ## Install
 
-From a terminal:
+Install is a two-step Codex flow: add the marketplace source, then install the plugin.
+
+1. From a terminal, add the marketplace:
 
 ```bash
 codex plugin marketplace add dhivyabuilds/Agent-Safety-Boundary-Kit
 ```
 
-Then open Codex and install **Agent Safety Boundary Kit** from the plugin directory.
+2. Open Codex Plugins.
+
+3. Find **Agent Safety Boundary Kit**.
+
+4. Install and enable the plugin.
+
+5. Start a new Codex chat in the agent project you are building.
+
+`@Agent Safety Boundary Kit` resolves only after the plugin is installed and enabled. Adding the marketplace source alone is not enough.
 
 ## Use
 
@@ -58,10 +68,12 @@ The skill should then interview you, summarize the proposed boundary, ask for co
 
 ## Customer Experience
 
-1. Install the plugin.
-2. Invoke **Agent Safety Boundary Kit** in an agent repo.
-3. Answer a short boundary-design interview.
-4. Confirm the draft boundary.
-5. Let Codex write `.agent-boundary/`.
-6. Review sample `boundary-check` results.
-7. Wire the checker into the agent before sensitive disclosures, costs, commitments, identity checks, account changes, or scope expansion.
+1. Add the marketplace source.
+2. Install and enable the plugin in Codex.
+3. Start a new chat in an agent repo.
+4. Invoke **Agent Safety Boundary Kit**.
+5. Answer a short boundary-design interview.
+6. Confirm the draft boundary.
+7. Let Codex write `.agent-boundary/`.
+8. Review sample `boundary-check` results.
+9. Wire the checker into the agent before sensitive disclosures, costs, commitments, identity checks, account changes, or scope expansion.
