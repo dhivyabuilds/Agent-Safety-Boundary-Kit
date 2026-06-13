@@ -14,6 +14,12 @@ The marketplace entry lives at:
 .agents/plugins/marketplace.json
 ```
 
+The plugin packages the Codex workflow and a checker launcher. The canonical checker remains at:
+
+```text
+scripts/boundary_check.py
+```
+
 ## Install
 
 From a terminal:
