@@ -1,0 +1,37 @@
+{
+  "name": "agent-safety-boundary-kit",
+  "version": "0.1.0",
+  "description": "Design, generate, check, and audit safety boundaries for agents acting on a user's behalf.",
+  "author": {
+    "name": "Dhivya Builds",
+    "url": "https://github.com/dhivyabuilds"
+  },
+  "homepage": "https://github.com/dhivyabuilds/Agent-Safety-Boundary-Kit",
+  "repository": "https://github.com/dhivyabuilds/Agent-Safety-Boundary-Kit",
+  "keywords": [
+    "agent-safety",
+    "delegated-authority",
+    "boundaries",
+    "codex",
+    "skills"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Agent Safety Boundary Kit",
+    "shortDescription": "Design safety boundaries before agents interact with third parties.",
+    "longDescription": "A guided workflow and local checker for defining what an agent may share, do, agree to, spend, access, or escalate when acting on a user's behalf.",
+    "developerName": "Dhivya Builds",
+    "category": "Security",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/dhivyabuilds/Agent-Safety-Boundary-Kit",
+    "defaultPrompt": [
+      "Design a safety boundary for this agent.",
+      "Create .agent-boundary files after approval.",
+      "Run boundary-check sample scenarios."
+    ],
+    "brandColor": "#2563EB"
+  }
+}
