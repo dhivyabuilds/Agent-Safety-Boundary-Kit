@@ -30,12 +30,16 @@ It complements prompt-injection scanners, PII redactors, tool allowlists, and sa
 ## What's Included
 
 ```text
+core/                                  # portable boundary model and operating flow
 skills/agent-safety-boundary/SKILL.md   # guided boundary-design workflow
 scripts/boundary_check.py               # CLI/importable checker
 schemas/boundary.schema.json            # boundary.yaml shape
 schemas/request.schema.json             # third-party request shape
 examples/                               # runnable demo boundary and requests
 tests/                                  # checker tests
+integrations/codex/                     # Codex install and use notes
+plugins/agent-safety-boundary-kit/       # installable Codex plugin package
+.agents/plugins/marketplace.json         # Codex marketplace entry
 ```
 
 For an agent project, the skill helps generate:
@@ -62,7 +66,35 @@ Use this kit before an agent:
 - performs identity verification or account changes;
 - shares memory, prompts, tool credentials, or private context with another agent.
 
-### Boundary Design
+### Install For Codex
+
+Install the plugin marketplace:
+
+```bash
+codex plugin marketplace add dhivyabuilds/Agent-Safety-Boundary-Kit
+```
+
+Then open Codex, go to Plugins, and install **Agent Safety Boundary Kit**.
+
+In an agent project, invoke it with:
+
+```text
+@Agent Safety Boundary Kit
+I am building a medical appointment coordination agent.
+Help me define its safety boundary.
+```
+
+Or invoke the bundled skill:
+
+```text
+$agent-safety-boundary
+I am building a refund negotiation agent.
+Help me define its safety boundary.
+```
+
+The first response should be a boundary-design question, not file creation.
+
+### Use Without A Plugin
 
 Point a coding agent at:
 
@@ -81,15 +113,19 @@ Start by understanding the use case and helping me plan its safety boundary.
 Once the boundary plan is clear, confirm it with me, then write `.agent-boundary/` and run sample checks.
 ```
 
-The first response should be a boundary-design question, not file creation.
+### Customer Flow
 
-The planning flow should cover:
+The experience should be:
 
-- agent purpose and counterparties;
-- default disclosures;
-- never-disclose items;
-- payments, fees, commitments, identity checks, account changes, and scope expansion;
-- which requests are pre-authorized, approval-required, refused, or collected and reported.
+1. Install the plugin or point your coding agent at the skill.
+2. Invoke Agent Safety Boundary Kit in the agent repo.
+3. Answer a short boundary-design interview.
+4. Review and confirm the draft boundary.
+5. Let the coding agent write `.agent-boundary/`.
+6. Review sample `boundary-check` results.
+7. Wire the checker into the agent before sensitive disclosures, costs, commitments, identity checks, account changes, or scope expansion.
+
+The interview should cover agent purpose, counterparties, default disclosures, never-disclose items, payments, fees, commitments, identity checks, account changes, scope expansion, and which requests are pre-authorized, approval-required, refused, or collected and reported.
 
 After confirmation, write:
 
@@ -190,6 +226,9 @@ Example:
 ## Docs
 
 - [SPEC.md](SPEC.md): boundary model and product details.
+- [core/operating-flow.md](core/operating-flow.md): portable first-run customer flow.
+- [core/boundary-model.md](core/boundary-model.md): decisions, discretion modes, and request model.
+- [integrations/codex/README.md](integrations/codex/README.md): Codex plugin install and use notes.
 - [skills/agent-safety-boundary/SKILL.md](skills/agent-safety-boundary/SKILL.md): coding-agent instructions.
 
 ## Development
