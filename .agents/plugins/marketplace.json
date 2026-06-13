@@ -1,0 +1,20 @@
+{
+  "name": "agent-safety-boundary-kit",
+  "interface": {
+    "displayName": "Agent Safety Boundary Kit"
+  },
+  "plugins": [
+    {
+      "name": "agent-safety-boundary-kit",
+      "source": {
+        "source": "local",
+        "path": "./plugins/agent-safety-boundary-kit"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Security"
+    }
+  ]
+}
