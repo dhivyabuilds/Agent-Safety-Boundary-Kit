@@ -9,6 +9,14 @@ Use this skill to create and apply a safety boundary before an agent interacts w
 
 Third parties include people, businesses, customer-service chatbots, websites, remote agents, phone-call recipients, vendors, and any system outside the user's trusted agent runtime.
 
+This skill is the Codex-facing adapter for the portable Agent Safety Boundary Kit flow. The shared product behavior lives in:
+
+- `core/operating-flow.md`
+- `core/boundary-model.md`
+- `SPEC.md`
+
+Follow those files as the source of truth when creating `.agent-boundary/` for a project.
+
 ## Core Rule
 
 Operate only inside the boundary.
@@ -27,6 +35,15 @@ If no boundary exists, help the builder create one before interacting with the t
 ## Boundary Design Flow
 
 When this skill is invoked to create a new boundary, begin by understanding the agent's use case through a short planning conversation. The first response should be a question that helps define the agent's delegated authority, not a report that files were created.
+
+Use the flow in `core/operating-flow.md`:
+
+1. Start with the agent use case.
+2. Identify discretion moments.
+3. Summarize and confirm.
+4. Write boundary files.
+5. Run sample checks.
+6. Suggest the integration point.
 
 Start with the agent's job:
 
