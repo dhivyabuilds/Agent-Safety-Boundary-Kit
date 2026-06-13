@@ -68,15 +68,25 @@ Use this kit before an agent:
 
 ### Install For Codex
 
-Install the plugin marketplace:
+If you are using Codex, install it as a Codex plugin before trying to mention it with `@Agent Safety Boundary Kit`.
+
+1. Add this repo as a Codex plugin marketplace:
 
 ```bash
 codex plugin marketplace add dhivyabuilds/Agent-Safety-Boundary-Kit
 ```
 
-Then open Codex, go to Plugins, and install **Agent Safety Boundary Kit**.
+2. Open Codex Plugins.
 
-In an agent project, invoke it with:
+3. Find **Agent Safety Boundary Kit**.
+
+4. Install and enable the plugin.
+
+5. Start a new Codex chat in the agent project you are building.
+
+Adding the marketplace source is not the same as installing the plugin. `@Agent Safety Boundary Kit` works only after the plugin is installed and enabled in Codex.
+
+Then invoke it with:
 
 ```text
 @Agent Safety Boundary Kit
@@ -117,13 +127,15 @@ Once the boundary plan is clear, confirm it with me, then write `.agent-boundary
 
 The experience should be:
 
-1. Install the plugin or point your coding agent at the skill.
-2. Invoke Agent Safety Boundary Kit in the agent repo.
-3. Answer a short boundary-design interview.
-4. Review and confirm the draft boundary.
-5. Let the coding agent write `.agent-boundary/`.
-6. Review sample `boundary-check` results.
-7. Wire the checker into the agent before sensitive disclosures, costs, commitments, identity checks, account changes, or scope expansion.
+1. Add the Codex marketplace source.
+2. Install and enable the plugin in Codex.
+3. Start a new chat in the agent repo.
+4. Invoke Agent Safety Boundary Kit.
+5. Answer a short boundary-design interview.
+6. Review and confirm the draft boundary.
+7. Let the coding agent write `.agent-boundary/`.
+8. Review sample `boundary-check` results.
+9. Wire the checker into the agent before sensitive disclosures, costs, commitments, identity checks, account changes, or scope expansion.
 
 The interview should cover agent purpose, counterparties, default disclosures, never-disclose items, payments, fees, commitments, identity checks, account changes, scope expansion, and which requests are pre-authorized, approval-required, refused, or collected and reported.
 
